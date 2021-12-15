@@ -1,0 +1,216 @@
+*, *::after, *::before {
+    box-sizing: inherit;
+    font-family: Gotham Rounded, Arial, Helvetica, sans-serif
+}
+
+html {
+    box-sizing: border-box;
+    background: #ffc600;
+    font-family: 'helvetica neue';
+    font-size: 20px;
+    font-weight: 200;
+  }
+
+body {
+    margin: 0;
+}
+
+
+.panels {
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+  }
+
+  .panel {
+    background: #6B0F9C;
+    box-shadow: inset 0 0 0 5px rgba(255,255,255,0.1);
+    color: white;
+    text-align: center;
+    align-items: center;
+    /* Safari transitionend event.propertyName === flex */
+    /* Chrome + FF transitionend event.propertyName === flex-grow */
+    transition:
+      font-size 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
+      flex 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
+      width 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
+      height 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
+      background 0.2s;
+    font-size: 20px;
+    background-size: cover;
+    background-position: center;
+
+     
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .panel1 { background-image:url(https://res.cloudinary.com/dev-ltd/image/upload/v1639573314/Rwanda_yb6dpb.png); }
+  .panel2 { background-image:url(https://res.cloudinary.com/dev-ltd/image/upload/v1639573326/america_-_Copy_svquyp.png); }
+  .panel3 { background-image:url(https://res.cloudinary.com/dev-ltd/image/upload/v1639573323/china_p2pnym.png); }
+  .panel4 { background-image:url(https://res.cloudinary.com/dev-ltd/image/upload/v1639573314/canada_-_Copy_dhs4e2.png); }
+  .panel5 { background-image:url(https://res.cloudinary.com/dev-ltd/image/upload/v1639573524/france_odex7h.png); }
+
+  /* Flex Children */
+  .panel > div {
+    margin: 0;
+    width: 100%;
+    transition: transform 0.5s;
+    flex: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+ 
+  .panel > *:first-child {
+      transform: translateY(-100%);
+  }
+
+  .panel.open-active > *:first-child {
+      transform: translateY(0%);
+  }
+  .panel > *:last-child {
+    transform: translateY(100%);
+}
+
+.panel.open-active > *:last-child {
+    transform: translateY(0%);
+}
+
+
+  .panel p {
+    text-transform: uppercase;
+    font-family: 'Amatic SC', cursive;
+    text-shadow: 0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45);
+    font-size: 2em;
+  }
+  
+  .panel p:nth-child(2) {
+    font-size: 4em;
+  }
+
+  .panel.open {
+    flex:5;
+    font-size: 40px;
+  }
+
+  .panel.open .clock {
+    width:300px;
+    height:300px;
+  }
+  
+  .panel.open .clock .hand.second {
+    width: 3px; 
+  }
+  .panel.open .clock .hand.minute {
+    width: 5px; 
+  }
+  .panel.open .clock .hand.hand.hour {
+    width: 7px; 
+  }
+
+  .panel.open .clock::after {
+      width:15px;
+      height:15px;
+  }
+
+
+
+
+
+.clock {
+    width: 150px;
+    height: 150px;
+    background-color: rgba(255, 255, 255, 0.932);
+    border-radius: 50%;
+    border: 2px solid black;
+    position: relative;
+    transition:
+      font-size 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
+      width 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
+      height 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
+      background 0.2s;
+}
+
+
+.clock::after {
+    content: "";
+    position: absolute;
+    background-color: black;
+    top:50%;
+    left:50%;
+    width: 10px;
+    height: 10px;
+    transform: translate(-50%,-50%);
+    border-radius: 50%;
+    z-index: 10;
+    transition:
+    width 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
+    height 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
+    background 0.2s;
+}
+
+.clock .number {
+    --rotation: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    text-align: center;
+    transform: rotate(var(--rotation));
+}
+
+.clock .number1 {--rotation:30deg;}
+.clock .number2 {--rotation:60deg;}
+.clock .number3 {--rotation:90deg;}
+.clock .number4 {--rotation:120deg;}
+.clock .number5 {--rotation:150deg;}
+.clock .number6 {--rotation:180deg;}
+.clock .number7 {--rotation:210deg;}
+.clock .number8 {--rotation:240deg;}
+.clock .number9 {--rotation:270deg;}
+.clock .number10 {--rotation:300deg;}
+.clock .number11 {--rotation:330deg;}
+
+.clock .hand {
+    --rotation: 0;
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    background-color: black;
+    transform: translateX(-50%);
+    transform:rotate(calc(var(--rotation)* 1deg));
+    transform-origin: bottom;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    z-index: 10;
+}
+
+.clock .hand.second {
+    width: 1px; 
+    height: 45%;
+    background-color: red;
+    transition:
+    width 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11);  
+}
+.clock .hand.minute {
+    width: 3px; 
+    height: 40%;
+    background-color: black;
+    transition:
+    width 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11);
+    
+}
+.clock .hand.hour {
+    width: 5px; 
+    height: 35%;
+    background-color: black;
+    transition:
+    width 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11);
+}
+
